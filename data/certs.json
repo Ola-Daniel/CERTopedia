@@ -1,0 +1,58 @@
+[
+    {
+        "country": "Australia",
+        "cert_name": "Australian Cyber Security Centre (ACSC)",
+        "website": "https://www.cyber.gov.au/",
+        "emergency_phone": "",
+        "established_date": "2014",
+        "additional_info": "Part of the Australian Signals Directorate (ASD)."
+    },
+    {
+        "country": "Canada",
+        "cert_name": "Canadian Centre for Cyber Security",
+        "website": "https://www.cyber.gc.ca/",
+        "emergency_phone": "",
+        "established_date": "2018",
+        "additional_info": "Operates under the Communications Security Establishment (CSE)."
+    },
+    {
+        "country": "Germany",
+        "cert_name": "CERT-Bund",
+        "website": "https://www.bsi.bund.de/",
+        "emergency_phone": "",
+        "established_date": "1991",
+        "additional_info": "Managed by the German Federal Office for Information Security (BSI)."
+    },
+    {
+        "country": "Japan",
+        "cert_name": "JPCERT/CC",
+        "website": "https://www.jpcert.or.jp/",
+        "emergency_phone": "",
+        "established_date": "1996",
+        "additional_info": "First CSIRT in Japan, focuses on incident handling and coordination."
+    },
+    {
+        "country": "Nigeria",
+        "cert_name": "Nigeria Computer Emergency Response Team",
+        "website": "https://cert.gov.ng/",
+        "emergency_phone": "+2349055554499",
+        "established_date": "2014",
+        "additional_info": ""
+    },
+    {
+        "country": "United Kingdom",
+        "cert_name": "National Cyber Security Centre (NCSC)",
+        "website": "https://www.ncsc.gov.uk/",
+        "emergency_phone": "",
+        "established_date": "2016",
+        "additional_info": "Part of the UK Government Communications Headquarters (GCHQ)."
+    },
+    {
+        "country": "United States",
+        "cert_name": "Cybersecurity and Infrastructure Security Agency (CISA)",
+        "website": "https://www.cisa.gov/",
+        "emergency_phone": "",
+        "established_date": "2018",
+        "additional_info": ""
+    }
+]
