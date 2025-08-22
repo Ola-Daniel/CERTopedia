@@ -9,8 +9,8 @@ function updateHtmlReferences() {
   const htmlPath = path.join(__dirname, '../dist/index.html');
   
   if (!fs.existsSync(htmlPath)) {
-    console.error('❌ dist/index.html not found');
-    return false;
+    console.log('⚠️  dist/index.html not found, skipping HTML optimization');
+    return true; // Don't fail if dist doesn't exist yet
   }
   
   let html = fs.readFileSync(htmlPath, 'utf8');
@@ -91,6 +91,12 @@ function updateHtmlReferences() {
 }
 
 function createServiceWorker() {
+  // Ensure dist directory exists
+  const distDir = path.join(__dirname, '../dist');
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+  
   const swPath = path.join(__dirname, '../dist/sw.js');
   const timestamp = Date.now();
   
@@ -162,14 +168,15 @@ self.addEventListener('activate', (event) => {
   
   fs.writeFileSync(swPath, serviceWorkerContent);
   console.log('✅ Created service worker');
+  return true;
 }
 
 function optimizeJson() {
   const jsonPath = path.join(__dirname, '../dist/data/certs.json');
   
   if (!fs.existsSync(jsonPath)) {
-    console.error('❌ dist/data/certs.json not found');
-    return false;
+    console.log('⚠️  dist/data/certs.json not found, skipping JSON optimization');
+    return true; // Don't fail if dist doesn't exist yet
   }
   
   try {
@@ -189,6 +196,12 @@ function optimizeJson() {
 }
 
 function generateManifest() {
+  // Ensure dist directory exists
+  const distDir = path.join(__dirname, '../dist');
+  if (!fs.existsSync(distDir)) {
+    fs.mkdirSync(distDir, { recursive: true });
+  }
+  
   const manifestPath = path.join(__dirname, '../dist/manifest.json');
   
   const manifest = {
@@ -213,6 +226,7 @@ function generateManifest() {
   
   fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
   console.log('✅ Generated web manifest');
+  return true;
 }
 
 // Run all optimizations
