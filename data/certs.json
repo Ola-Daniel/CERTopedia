@@ -1,0 +1,200 @@
+[
+  {
+    "country": "Australia",
+    "name": "AusCERT",
+    "fullName": "Australian Computer Emergency Response Team",
+    "website": "https://www.auscert.org.au",
+    "emergencyContact": "+61 7 3365 4417",
+    "email": "auscert@auscert.org.au",
+    "established": "1993",
+    "description": "Australia's national computer emergency response team providing cybersecurity incident response services.",
+    "sector": "National",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-01-15"
+  },
+  {
+    "country": "Brazil",
+    "name": "CERT.br",
+    "fullName": "Computer Emergency Response Team Brazil",
+    "website": "https://www.cert.br",
+    "emergencyContact": "N/A (Email only)",
+    "email": "cert@cert.br",
+    "established": "1997",
+    "description": "Brazil's national CERT providing incident analysis and coordination for networks using Brazilian Internet resources.",
+    "sector": "National",
+    "pgpKey": {
+      "available": true,
+      "keyId": "0xDF0EF160",
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-08-22"
+  },
+  {
+    "country": "Canada",
+    "name": "CCIRC",
+    "fullName": "Canadian Cyber Incident Response Centre",
+    "website": "https://www.cyber.gc.ca",
+    "emergencyContact": "1-833-CYBER-88",
+    "email": "contact@cyber.gc.ca",
+    "established": "2005",
+    "description": "Canada's national coordination centre for cybersecurity incident response.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-01-15"
+  },
+  {
+    "country": "France",
+    "name": "CERT-FR",
+    "fullName": "Centre gouvernemental de veille, d'alerte et de réponse aux attaques informatiques",
+    "website": "https://www.cert.ssi.gouv.fr",
+    "emergencyContact": "+33 9 70 83 32 18",
+    "email": "cert-fr@ssi.gouv.fr",
+    "established": "2009",
+    "description": "France's governmental CERT operated by ANSSI, handling technical incidents for public administration and vital operators.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": true,
+      "keyId": "0x1B45CF2A",
+      "fingerprint": "7F4C 8FA6 A356 D1CC 2E5C AB09 5416 33B8 1B45 CF2A"
+    },
+    "verified": true,
+    "lastUpdated": "2024-08-22"
+  },
+  {
+    "country": "Germany",
+    "name": "BSI-CERT",
+    "fullName": "Computer Emergency Response Team for German Federal Administration",
+    "website": "https://www.bsi.bund.de",
+    "emergencyContact": "+49 228 99 9582-222",
+    "email": "certbund@bsi.bund.de",
+    "established": "2001",
+    "description": "Germany's national CERT providing cybersecurity services to federal agencies and critical infrastructure.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-01-15"
+  },
+  {
+    "country": "Japan",
+    "name": "JPCERT/CC",
+    "fullName": "Japan Computer Emergency Response Team Coordination Center",
+    "website": "https://www.jpcert.or.jp",
+    "emergencyContact": "+81-3-6271-8901",
+    "email": "info@jpcert.or.jp",
+    "established": "1996",
+    "description": "Japan's first CSIRT providing cybersecurity coordination and incident response as a CSIRT of CSIRTs for the Japanese community.",
+    "sector": "National",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-08-22"
+  },
+  {
+    "country": "Netherlands",
+    "name": "NCSC-NL",
+    "fullName": "National Cyber Security Centre Netherlands",
+    "website": "https://english.ncsc.nl",
+    "emergencyContact": "cert@ncsc.nl",
+    "email": "cert@ncsc.nl",
+    "established": "2012",
+    "description": "Netherlands national CSIRT serving central government and providers of vital processes and critical infrastructure.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-08-22"
+  },
+  {
+    "country": "Singapore",
+    "name": "SingCERT",
+    "fullName": "Singapore Computer Emergency Response Team",
+    "website": "https://www.csa.gov.sg",
+    "emergencyContact": "singcert@csa.gov.sg",
+    "email": "singcert@csa.gov.sg",
+    "established": "1997",
+    "description": "Singapore's national CERT facilitating detection, resolution and prevention of cybersecurity incidents for the Singapore constituency.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-08-22"
+  },
+  {
+    "country": "South Korea",
+    "name": "KrCERT/CC",
+    "fullName": "Korea Computer Emergency Response Team Coordination Center",
+    "website": "https://www.krcert.or.kr",
+    "emergencyContact": "+82-2-405-5118",
+    "email": "first-team@krcert.or.kr",
+    "established": "2009",
+    "description": "South Korea's national CERT operated by KISA, serving as focal point for cybersecurity incident handling in the private sector.",
+    "sector": "National",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-08-22"
+  },
+  {
+    "country": "United Kingdom",
+    "name": "NCSC",
+    "fullName": "National Cyber Security Centre",
+    "website": "https://www.ncsc.gov.uk",
+    "emergencyContact": "0300 123 2040",
+    "email": "enquiries@ncsc.gov.uk",
+    "established": "2016",
+    "description": "The UK's national technical authority for cyber security, providing incident response and guidance.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-01-15"
+  },
+  {
+    "country": "United States",
+    "name": "US-CERT",
+    "fullName": "United States Computer Emergency Readiness Team",
+    "website": "https://www.cisa.gov",
+    "emergencyContact": "1-888-282-0870",
+    "email": "info@us-cert.gov",
+    "established": "2003",
+    "description": "The US national CERT providing cybersecurity coordination and incident response capabilities.",
+    "sector": "Government",
+    "pgpKey": {
+      "available": false,
+      "keyId": null,
+      "fingerprint": null
+    },
+    "verified": true,
+    "lastUpdated": "2024-01-15"
+  }
+]

@@ -85,6 +85,11 @@ Each CERT entry in `data/certs.json` follows this structure:
   "established": "YYYY",
   "description": "Brief description of the CERT's role and responsibilities",
   "sector": "Government|National|Academic|Commercial",
+  "pgpKey": {
+    "available": true|false,
+    "keyId": "0xKEYID or null",
+    "fingerprint": "FULL FINGERPRINT or null"
+  },
   "verified": true,
   "lastUpdated": "YYYY-MM-DD"
 }
@@ -100,6 +105,10 @@ Each CERT entry in `data/certs.json` follows this structure:
 - **established**: Year of establishment
 - **description**: Brief description (max 200 characters)
 - **sector**: One of: Government, National, Academic, Commercial
+- **pgpKey**: PGP encryption key information object
+  - **available**: Boolean indicating if PGP key is available
+  - **keyId**: PGP key identifier (e.g., "0x1B45CF2A") or null
+  - **fingerprint**: Full PGP key fingerprint or null
 - **verified**: Must be `true` (all entries must be verified)
 - **lastUpdated**: Date of last information update (YYYY-MM-DD format)
 
@@ -127,8 +136,29 @@ We welcome contributions! To add a new CERT entry:
   "established": "1996",
   "description": "Japan's national CERT providing cybersecurity incident response and coordination services.",
   "sector": "National",
+  "pgpKey": {
+    "available": false,
+    "keyId": null,
+    "fingerprint": null
+  },
   "verified": true,
-  "lastUpdated": "2024-01-15"
+  "lastUpdated": "2024-08-22"
+}
+```
+
+### PGP Key Information
+Many CERTs provide PGP keys for secure communication. When available, include:
+- Set `available` to `true`
+- Include the key ID (e.g., "0x1B45CF2A")
+- Include full fingerprint if available
+- If no PGP key is available, set `available` to `false` with `null` values
+
+Example with PGP key:
+```json
+"pgpKey": {
+  "available": true,
+  "keyId": "0x1B45CF2A",
+  "fingerprint": "7F4C 8FA6 A356 D1CC 2E5C AB09 5416 33B8 1B45 CF2A"
 }
 ```
 

@@ -1,0 +1,78 @@
+{
+  "name": "certopedia",
+  "version": "1.0.0",
+  "description": "Global CERT Directory - Comprehensive directory of Computer Emergency Response Teams worldwide",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "npm run start",
+    "build": "npm run clean && npm run copy-files && npm run minify",
+    "clean": "rm -rf dist && mkdir -p dist",
+    "copy-files": "npm run copy-html && npm run copy-assets && npm run copy-data",
+    "copy-html": "cp index.html dist/",
+    "copy-assets": "cp -r assets dist/",
+    "copy-data": "cp -r data dist/",
+    "minify": "npm run minify-css && npm run minify-js",
+    "minify-css": "cleancss -o dist/assets/css/styles.min.css dist/assets/css/styles.css",
+    "minify-js": "terser dist/assets/js/main.js -o dist/assets/js/main.min.js --compress --mangle",
+    "optimize": "npm run optimize-images && npm run update-references",
+    "optimize-images": "echo 'Image optimization skipped - no images to optimize'",
+    "update-references": "node scripts/update-references.js",
+    "test": "npm run test-json && npm run test-links && npm run test-security",
+    "test-json": "node scripts/validate-json.js",
+    "test-links": "node scripts/check-links.js",
+    "test-security": "node scripts/security-check.js",
+    "validate": "npm run validate-json && npm run validate-html",
+    "validate-json": "node scripts/validate-json.js",
+    "validate-html": "html-validate dist/index.html",
+    "lint": "npm run lint-js && npm run lint-css",
+    "lint-js": "eslint assets/js/*.js lambda/*.js --fix",
+    "lint-css": "stylelint assets/css/*.css --fix",
+    "smoke-test": "node scripts/smoke-test.js",
+    "deploy": "serverless deploy",
+    "deploy-dev": "serverless deploy --stage dev",
+    "remove": "serverless remove",
+    "logs": "serverless logs -f app",
+    "invoke-local": "serverless invoke local -f app",
+    "offline": "serverless offline",
+    "package": "serverless package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ola-Daniel/CERTopedia.git"
+  },
+  "keywords": [
+    "cert",
+    "cybersecurity",
+    "emergency-response",
+    "incident-response",
+    "security",
+    "csirt"
+  ],
+  "author": "Daniel Oladapo",
+  "license": "MIT",
+  "dependencies": {
+    "serverless": "^3.38.0"
+  },
+  "devDependencies": {
+    "@html-validate/stylish": "^4.2.0",
+    "clean-css-cli": "^5.6.3",
+    "eslint": "^8.57.0",
+    "html-validate": "^8.7.4",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard": "^34.0.0",
+    "terser": "^5.26.0",
+    "serverless-offline": "^13.3.0",
+    "serverless-s3-sync": "^3.2.0",
+    "serverless-cloudfront-invalidate": "^1.12.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

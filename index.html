@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 CERTopedia - Global CERT Directory</title>
+    <meta name="description" content="Comprehensive directory of Computer Emergency Response Teams (CERTs) worldwide. Find verified cybersecurity emergency contacts and CERT information.">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">CERTopedia</span>
+            </div>
+            <div class="nav-links">
+                <a href="#directory" class="nav-link">Directory</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contribute" class="nav-link">Contribute</a>
+                <a href="https://github.com/Ola-Daniel/CERTopedia" class="nav-link github-link" target="_blank">
+                    <span>GitHub</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-emoji">🛡️</span>
+                    The Global CERT Directory
+                </h1>
+                <p class="hero-subtitle">
+                    Comprehensive and community-driven directory of Computer Emergency Response Teams (CERTs) worldwide.
+                    Access verified cybersecurity emergency contacts to respond effectively to cyber threats.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" id="cert-count">Loading...</span>
+                        <span class="stat-label">CERTs Listed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="country-count">Loading...</span>
+                        <span class="stat-label">Countries Covered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Verified</span>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#directory" class="btn btn-primary">Explore Directory</a>
+                    <a href="#contribute" class="btn btn-secondary">Contribute</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search & Filter Section -->
+    <section class="search-section" id="directory">
+        <div class="container">
+            <h2 class="section-title">🔍 Find CERTs by Country or Region</h2>
+            <div class="search-controls">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search by country, CERT name, or sector..." class="search-input">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <div class="filter-controls">
+                    <select id="sector-filter" class="filter-select">
+                        <option value="">All Sectors</option>
+                        <option value="Government">Government</option>
+                        <option value="National">National</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Commercial">Commercial</option>
+                    </select>
+                    <button id="clear-filters" class="btn btn-ghost">Clear Filters</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERT Directory -->
+    <section class="directory-section">
+        <div class="container">
+            <div id="cert-grid" class="cert-grid">
+                <!-- CERT cards will be dynamically loaded here -->
+            </div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Loading CERT directory...</p>
+            </div>
+            <div id="no-results" class="no-results" style="display: none;">
+                <div class="no-results-icon">🔍</div>
+                <h3>No CERTs found</h3>
+                <p>Try adjusting your search criteria or filters.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="about">
+        <div class="container">
+            <h2 class="section-title">🌟 Why CERTopedia?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Reliable Information</h3>
+                    <p>Access official CERT websites, emergency contacts, and verified establishment details from trusted sources.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌎</div>
+                    <h3>Global Coverage</h3>
+                    <p>Comprehensive directory covering national CERTs from every continent, organized alphabetically by country.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Community-Driven</h3>
+                    <p>Open-source project where cybersecurity professionals contribute to keep information current and accurate.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Verification Process</h3>
+                    <p>Every submission undergoes rigorous verification for authenticity before being added to the directory.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribute Section -->
+    <section class="contribute-section" id="contribute">
+        <div class="container">
+            <div class="contribute-content">
+                <h2 class="section-title">🚀 Help Us Grow</h2>
+                <p class="contribute-description">
+                    CERTopedia thrives on community contributions. Help us maintain the most comprehensive 
+                    and up-to-date CERT directory by adding new entries or updating existing information.
+                </p>
+                <div class="contribute-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Fork the Repository</h4>
+                            <p>Create your own copy of the CERTopedia project on GitHub</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Add CERT Entry</h4>
+                            <p>Add new entries to certs.json with verified information</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Submit Pull Request</h4>
+                            <p>Submit your changes for review and merge</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contribute-actions">
+                    <a href="https://github.com/Ola-Daniel/CERTopedia" class="btn btn-primary" target="_blank">
+                        View on GitHub
+                    </a>
+                    <a href="CONTRIBUTING.md" class="btn btn-secondary">
+                        Read Guidelines
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🌍</span>
+                        <span class="logo-text">CERTopedia</span>
+                    </div>
+                    <p class="footer-description">
+                        Making cybersecurity emergency response more accessible worldwide.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="CONTRIBUTING.md">Contributing Guide</a></li>
+                        <li><a href="AUTHENTICATION.md">Verification Process</a></li>
+                        <li><a href="LICENSE">License</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/Ola-Daniel/CERTopedia" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/Ola-Daniel/CERTopedia/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/Ola-Daniel/CERTopedia/discussions" target="_blank">Discussions</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CERTopedia. Licensed under MIT License.</p>
+                <p>🌟 A huge thanks to all contributors who keep CERTopedia up-to-date and accurate!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
