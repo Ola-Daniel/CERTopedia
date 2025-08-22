@@ -81,7 +81,6 @@ class CERTopedia {
     }
     
     setupHeaderScroll() {
-        let lastScrollY = window.scrollY;
         const header = document.querySelector('.header');
         
         window.addEventListener('scroll', () => {
@@ -94,8 +93,6 @@ class CERTopedia {
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
                 header.style.boxShadow = 'none';
             }
-            
-            lastScrollY = currentScrollY;
         });
     }
     
@@ -398,7 +395,7 @@ class CERTopedia {
 class CERTUtilities {
     static formatPhoneNumber(phone) {
         // Simple phone number formatting
-        return phone.replace(/[^\d+\-\(\)\s]/g, '');
+        return phone.replace(/[^\d+\-\s()]/g, '');
     }
     
     static validateEmail(email) {
