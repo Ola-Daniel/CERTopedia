@@ -1,4 +1,4 @@
 *.exe
 *.claude
 .claude
-
+node_modules
