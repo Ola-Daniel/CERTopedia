@@ -27,32 +27,110 @@ Welcome to **CERTopedia**, a comprehensive and community-driven directory of **C
 
 ## 📂 Project Structure
 ```
-
+CERTopedia/
+├── index.html              # Homepage with interactive CERT directory
+├── data/
+│   └── certs.json          # CERT database (main data source)
+├── assets/
+│   ├── css/
+│   │   └── styles.css      # Responsive styling
+│   ├── js/
+│   │   └── main.js         # Search, filter, and interactive features
+│   └── images/
+│       └── favicon.svg     # Site icon
+├── sw.js                   # Service worker for offline functionality
+├── README.md               # This file
+├── CONTRIBUTING.md         # Contribution guidelines
+├── AUTHENTICATION.md       # Data verification process
+└── LICENSE                 # MIT License
 ```
 
 ---
 
 ## 🚀 Getting Started
-Want to explore the database? Follow these steps:
 
-### Clone the Repository
-```sh
-git clone https://github.com/Ola-Daniel/CERTopedia.git
-cd CERTopedia
+### Option 1: View the Interactive Directory
+1. **Clone the Repository**
+   ```sh
+   git clone https://github.com/Ola-Daniel/CERTopedia.git
+   cd CERTopedia
+   ```
+
+2. **Start a Local Server**
+   ```sh
+   # Using Python
+   python3 -m http.server 8000
+   
+   # Or using Node.js
+   npx serve .
+   ```
+
+3. **Open in Browser**
+   Navigate to `http://localhost:8000` to explore the interactive CERT directory.
+
+### Option 2: View Raw Data
+Open `data/certs.json` to browse the CERT database directly.
+
+## 📋 Data Format
+Each CERT entry in `data/certs.json` follows this structure:
+
+```json
+{
+  "country": "Country Name",
+  "name": "CERT Acronym",
+  "fullName": "Complete Organization Name",
+  "website": "https://official-website.domain",
+  "emergencyContact": "+XX XXX XXX XXXX",
+  "email": "contact@cert.domain",
+  "established": "YYYY",
+  "description": "Brief description of the CERT's role and responsibilities",
+  "sector": "Government|National|Academic|Commercial",
+  "verified": true,
+  "lastUpdated": "YYYY-MM-DD"
+}
 ```
 
-### View CERT Data
-Open `data/certs.json` to browse the available CERT listings.
+### Required Fields
+- **country**: ISO country name (for alphabetical sorting)
+- **name**: Official CERT acronym/short name
+- **fullName**: Complete organizational name
+- **website**: Official CERT website URL
+- **emergencyContact**: Primary emergency phone number
+- **email**: Official contact email
+- **established**: Year of establishment
+- **description**: Brief description (max 200 characters)
+- **sector**: One of: Government, National, Academic, Commercial
+- **verified**: Must be `true` (all entries must be verified)
+- **lastUpdated**: Date of last information update (YYYY-MM-DD format)
 
 ---
 
 ## 📥 Contributing
 We welcome contributions! To add a new CERT entry:
 
-1. **Fork** the repository.
-2. **Add** a new entry to `certs.json` (alphabetically).
-3. **Verify** your data source.
-4. **Submit** a Pull Request.
+1. **Fork** the repository
+2. **Add** a new entry to `data/certs.json` following the data format above
+3. **Ensure alphabetical ordering** by country name
+4. **Verify** your data source (must be from official sources)
+5. **Test locally** to ensure the entry displays correctly
+6. **Submit** a Pull Request with verification references
+
+### Example Entry Addition
+```json
+{
+  "country": "Japan",
+  "name": "JPCERT/CC",
+  "fullName": "Japan Computer Emergency Response Team Coordination Center",
+  "website": "https://www.jpcert.or.jp",
+  "emergencyContact": "+81-3-6271-8901",
+  "email": "info@jpcert.or.jp",
+  "established": "1996",
+  "description": "Japan's national CERT providing cybersecurity incident response and coordination services.",
+  "sector": "National",
+  "verified": true,
+  "lastUpdated": "2024-01-15"
+}
+```
 
 For full details, check out [CONTRIBUTING.md](CONTRIBUTING.md). 🚀
 
@@ -60,11 +138,20 @@ For full details, check out [CONTRIBUTING.md](CONTRIBUTING.md). 🚀
 
 ## ✅ Data Verification
 To maintain **accuracy and reliability**, all data must:
-- Be sourced from **official CERT or government websites**.
-- Include **verifiable references**.
-- Follow **alphabetical ordering** in `certs.json`.
+- Be sourced from **official CERT or government websites**
+- Include **verifiable references** in the Pull Request
+- Follow the **exact JSON schema** defined above
+- Maintain **alphabetical ordering** by country name in `data/certs.json`
+- Have **verified** field set to `true`
+- Include recent **lastUpdated** date
 
-See [AUTHENTICATION.md](AUTHENTICATION.md) for verification details.
+### Verification Sources (Priority Order)
+1. Official CERT website
+2. Government cybersecurity agency sites
+3. International CERT coordination bodies (e.g., FIRST.org)
+4. Academic institutions (for university CERTs)
+
+See [AUTHENTICATION.md](AUTHENTICATION.md) for detailed verification process.
 
 ---
 
