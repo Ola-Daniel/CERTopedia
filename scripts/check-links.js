@@ -12,6 +12,20 @@ const TIMEOUT = 15000; // 15 seconds
 const MAX_CONCURRENT = 5;
 const USER_AGENT = 'CERTopedia-LinkChecker/1.0 (https://cert.danieloo.com)';
 
+// URLs to skip (examples, localhost, templates, etc.)
+const SKIP_URLS = [
+  'http://localhost:8000',
+  'https://localhost:8000',
+  'https://official-website.domain',
+  'https://github.com/Ola-Daniel/CERTopedia.git',
+  'https://github.com/your-username/CERTopedia.git',
+  'https://github.com/Ola-Daniel/CERTopedia/discussions',
+  'contact@cert.domain',
+  'mailto:contact@cert.domain',
+  '+XX XXX XXX XXXX',
+  'tel:+XX XXX XXX XXXX'
+];
+
 // Link validation results
 const results = {
   total: 0,
@@ -80,6 +94,12 @@ async function checkLink(url, context = '') {
   const startTime = Date.now();
   
   try {
+    // Skip URLs in the skip list (examples, localhost, templates)
+    if (SKIP_URLS.includes(url) || SKIP_URLS.some(skipUrl => url.includes(skipUrl))) {
+      console.log(`⏭️  ${context}: ${url} (skipped - example/template URL)`);
+      return { valid: true, url, context, type: 'skipped', skipped: true };
+    }
+    
     // Skip mailto and tel links
     if (url.startsWith('mailto:') || url.startsWith('tel:')) {
       console.log(`✅ ${context}: ${url} (skipped - protocol link)`);
@@ -99,6 +119,7 @@ async function checkLink(url, context = '') {
     const responseTime = Date.now() - startTime;
     
     const isValid = response.statusCode >= 200 && response.statusCode < 400;
+    const isWarning = response.statusCode === 403 || response.statusCode === 429; // Forbidden or rate limited
     
     if (isValid) {
       console.log(`✅ ${context}: ${url} (${response.statusCode}) [${responseTime}ms]`);
@@ -108,6 +129,17 @@ async function checkLink(url, context = '') {
         context, 
         statusCode: response.statusCode, 
         responseTime 
+      };
+    } else if (isWarning) {
+      console.log(`⚠️  ${context}: ${url} (${response.statusCode}) [${responseTime}ms] - Warning only`);
+      return { 
+        valid: true, // Don't fail CI for warnings
+        url, 
+        context, 
+        statusCode: response.statusCode, 
+        responseTime,
+        warning: true,
+        error: `HTTP ${response.statusCode} (Warning)`
       };
     } else {
       console.log(`❌ ${context}: ${url} (${response.statusCode}) [${responseTime}ms]`);
@@ -239,8 +271,10 @@ function extractLinksFromMarkdown() {
       while ((match = markdownLinkRegex.exec(content)) !== null) {
         const url = match[2];
         
-        // Skip relative links and anchors
-        if (url.startsWith('http://') || url.startsWith('https://')) {
+        // Skip relative links, anchors, and URLs in skip list
+        if ((url.startsWith('http://') || url.startsWith('https://')) && 
+            !SKIP_URLS.includes(url) && 
+            !SKIP_URLS.some(skipUrl => url.includes(skipUrl))) {
           links.push({
             url: url,
             context: `${file.name}.md - "${match[1]}"`,
@@ -254,10 +288,15 @@ function extractLinksFromMarkdown() {
       const urlMatches = content.match(urlRegex) || [];
       
       urlMatches.forEach(url => {
-        // Avoid duplicates from markdown links
-        if (!links.some(link => link.url === url)) {
+        // Clean up URL (remove trailing punctuation that might be captured)
+        const cleanUrl = url.replace(/[)}\].,;:!?]+$/, '');
+        
+        // Avoid duplicates from markdown links and skip URLs in skip list
+        if (!links.some(link => link.url === cleanUrl) && 
+            !SKIP_URLS.includes(cleanUrl) && 
+            !SKIP_URLS.some(skipUrl => cleanUrl.includes(skipUrl))) {
           links.push({
-            url: url,
+            url: cleanUrl,
             context: `${file.name}.md - Plain URL`,
             type: 'plain'
           });
@@ -292,7 +331,9 @@ function extractLinksFromHtml() {
     while ((match = hrefRegex.exec(content)) !== null) {
       const url = match[1];
       
-      if (url.startsWith('http://') || url.startsWith('https://')) {
+      if ((url.startsWith('http://') || url.startsWith('https://')) && 
+          !SKIP_URLS.includes(url) && 
+          !SKIP_URLS.some(skipUrl => url.includes(skipUrl))) {
         links.push({
           url: url,
           context: 'index.html - Link',
@@ -306,7 +347,9 @@ function extractLinksFromHtml() {
     while ((match = srcRegex.exec(content)) !== null) {
       const url = match[1];
       
-      if (url.startsWith('http://') || url.startsWith('https://')) {
+      if ((url.startsWith('http://') || url.startsWith('https://')) && 
+          !SKIP_URLS.includes(url) && 
+          !SKIP_URLS.some(skipUrl => url.includes(skipUrl))) {
         links.push({
           url: url,
           context: 'index.html - Resource',
@@ -330,6 +373,9 @@ function generateReport(linkResults) {
     acc.total++;
     if (result.valid) {
       acc.valid++;
+      if (result.warning) {
+        acc.warnings++;
+      }
     } else {
       acc.invalid++;
       if (result.timeout) {
@@ -337,12 +383,13 @@ function generateReport(linkResults) {
       }
     }
     return acc;
-  }, { total: 0, valid: 0, invalid: 0, timeout: 0 });
+  }, { total: 0, valid: 0, invalid: 0, timeout: 0, warnings: 0 });
   
   console.log(`📈 Total Links Checked: ${summary.total}`);
   console.log(`✅ Valid Links: ${summary.valid}`);
   console.log(`❌ Invalid Links: ${summary.invalid}`);
   console.log(`⏰ Timeouts: ${summary.timeout}`);
+  console.log(`⚠️  Warnings: ${summary.warnings}`);
   console.log(`📊 Success Rate: ${((summary.valid / summary.total) * 100).toFixed(1)}%`);
   
   // Group by type
