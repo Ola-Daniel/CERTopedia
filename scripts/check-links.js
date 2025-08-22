@@ -113,7 +113,7 @@ async function checkLink(url, context = '') {
       throw new Error('Invalid URL format');
     }
     
-    console.log(`🔍 Checking: ${context}: ${url}`);
+    process.stdout.write(`🔍 Checking: ${context}: ${url}\n`);
     
     const response = await makeRequest(url);
     const responseTime = Date.now() - startTime;
